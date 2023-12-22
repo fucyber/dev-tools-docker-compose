@@ -1,0 +1,26 @@
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+    [entryPoints.web.http.redirections.entryPoint]
+      to = "websecure"
+      scheme = "https"
+
+  [entryPoints.websecure]
+    address = ":443"
+
+# API and dashboard configuration
+[api]
+  dashboard = true
+
+[certificatesResolvers.lets-encrypt.acme]
+  email = "email@your_domain.com"
+  storage = "acme.json"
+  [certificatesResolvers.lets-encrypt.acme.tlsChallenge]
+
+# Docker configuration backend
+[docker]
+  watch = true
+  network = "default-network"
+
+[providers.file]
+  filename = "traefik_dynamic.toml"

@@ -1,0 +1,36 @@
+version: '3.5'
+
+networks:
+  default:
+    driver: bridge
+    name: default-network
+
+services:
+  adminer:
+    image: adminer:latest
+    restart: on-failure:5
+    container_name: adminer
+    ports:
+      - '8001:8080'
+    expose:
+      - 8080
+    networks:
+      - default
+    # environment:
+      # - ADMINER_DEFAULT_SERVER=mariadb
+      # - ADMINER_PLUGINS='tables-filter tinymce'
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.http.routers.adminer.rule=Host(`db.abcd.com`)
+    #   - traefik.http.routers.adminer.entrypoints=websecure
+    #   - traefik.http.routers.adminer.tls=true
+    #   - traefik.http.routers.adminer.tls.certresolver=lets-encrypt
+    #   # - traefik.http.routers.adminer.tls.domains[0].main=*.abcd.com
+    #   - traefik.http.routers.adminer.middlewares=adminer@docker
+    #   # services
+    #   - traefik.http.routers.adminer.service=adminer
+    #   - traefik.http.services.adminer.loadbalancer.server.port=8080
+
+
+
+

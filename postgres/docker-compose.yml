@@ -1,0 +1,22 @@
+
+version: "3.6"
+
+networks:
+  default:
+    name: default-network
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5450:5432
+    restart: always
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=Admin@
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=test_db
+    networks:
+      - default
+
